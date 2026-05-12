@@ -20,3 +20,4 @@ This is a study project. Work within these constraints at all times:
 - **No premature abstractions.** Do not create helpers, utilities, or shared components unless the same code is needed in three or more places right now.
 - **No extra dependencies.** Do not install libraries to solve problems that can be solved with a few lines of code.
 - **Minimal comments.** Only comment when the why is non-obvious.
+- **Read files directly.** Never ask the user to paste code — always use the Read tool to check files yourself.
