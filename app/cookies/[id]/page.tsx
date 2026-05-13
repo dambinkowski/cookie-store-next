@@ -15,7 +15,7 @@ export default async function CookiePage(props: PageProps<"/cookies/[id]">) {
       <h1>Cookie detail page </h1>
       <h1>{cookie.name}</h1>
       <p>${cookie.price.toFixed(2)}</p>
-      <Link href="/menu">Back to menu</Link>
+
     </main>
   );
 }

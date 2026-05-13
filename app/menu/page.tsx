@@ -14,7 +14,7 @@ export default function Menu() {
           </Link>
         ))}
       </ul>
-      <Link href="/">Back to home</Link>
+
     </main>
   );
 }
