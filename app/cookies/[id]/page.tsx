@@ -1,12 +1,15 @@
-import Link from "next/link";
-import { cookies } from "@/lib/cookies"
+import { supabase } from "@/lib/supabase";
 
 
 export default async function CookiePage(props: PageProps<"/cookies/[id]">) {
   const { id } = await props.params;
-  const cookie = cookies.find((c) => c.id === Number(id));
+  const { data: cookie, error } = await supabase
+    .from("cookies")
+    .select("*")
+    .eq("id", Number(id))
+    .single();
 
-  if (!cookie) {
+  if (error || !cookie) {
     return <main><p>Cookie not found.</p></main>;
   }
 
