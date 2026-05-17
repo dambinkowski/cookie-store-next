@@ -1,22 +1,29 @@
 import Link from "next/link";
-import { db } from "@/lib/db";
-import { cookies } from "@/lib/db/schema";
+import { supabase } from "@/lib/supabase";
 
 export default async function Menu() {
-  const cookieList = await db.select().from(cookies);
+
+  const { data: cookies, error } = await supabase.from("cookies")
+    .select("*");
+
+  if (error) {
+    console.error("Error fetching cookies:", error);
+    return <p>Error loading menu.</p>;
+  }
 
   return (
     <main>
       <h1>Menu</h1>
       <ul>
-        {cookieList.map((cookie) => (
+        {cookies?.map((cookie) => (
           <Link key={cookie.id} href={`/cookies/${cookie.id}`}>
             <li>
-              {cookie.name} — ${Number(cookie.price).toFixed(2)}
+              {cookie.name} — ${cookie.price.toFixed(2)}
             </li>
           </Link>
         ))}
       </ul>
+
     </main>
   );
 }
